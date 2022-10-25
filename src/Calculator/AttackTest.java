@@ -4,16 +4,31 @@ import java.util.Scanner;
 
 class AttackTest {
 
- public static void AttackTest(int attackerPotential, int DEFPotential, int actionType) {
+ public static void attack(int attackerPotential, int DEFPotential, int actionType) {
 
   int ATTresult, DEFresult;
-  float locMultiplier = 0;
-  String locationName ;
+  float locMultiplier;
+  String locationName;
+  int measuringMod = 0;
 
   Scanner scan = new Scanner(System.in);
 
+  System.out.println("Czy atak jest mierzony?\n1 - Tak\n0 - Nie");
+  int measured = scan.nextInt();
+
   System.out.println("Rzut Agresora: ");
   int attackerRoll = scan.nextInt();
+
+  System.out.println("Czy mierzony?\n1 - Tak\n0 - Nie");
+  if (measured == 0){
+   locationName = Location.rolledlocationName(attackerRoll);
+   locMultiplier = Location.LocMultiplier(locationName);
+  } else{
+   locationName = Location.measuredlocationName();
+   locMultiplier = Location.LocMultiplier(locationName);
+   measuringMod = Location.measuringMod(locationName);
+  }
+
 
   //Rzut Agresora
   if (attackerRoll == 1) {
@@ -22,13 +37,12 @@ class AttackTest {
    locMultiplier = 3;
    locationName = "Głowa";
    Fumble.ATTFumble(ATTFumbleThrow, actionType, locationName);
-   ATTresult = attackerPotential - ATTFumbleThrow;
+   ATTresult = attackerPotential + measuringMod - ATTFumbleThrow;
   } else{
-   ATTresult = attackerRoll + attackerPotential;
+   ATTresult = attackerRoll + attackerPotential + measuringMod;
   }
 
-  locationName = Location.locationName(attackerRoll);
-  locMultiplier = Location.LocMultiplier(locationName);
+
 
   System.out.println("Rzut Obrońcy: ");
   int DEFroll = scan.nextInt();

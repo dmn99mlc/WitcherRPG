@@ -16,17 +16,19 @@ public class Calculator {
             System.out.println("Potencjał Obrońcy: ");
             int DEFPotential = scan.nextInt();
 
-            System.out.println("Wybierz typ ataku: \n 1 - Zwykły atak \n 2 - Szybkie ataki \n 3 - Silny atak");
+            System.out.println("Wybierz typ ataku: \n 1 - Zwykły cios \n 2 - Szybki cios \n 3 - Silny cios");
             int actionType = scan.nextInt();
-            if (actionType == 1){
-                AttackTest.AttackTest(attackerPotential, DEFPotential, actionType);
-            } else if (actionType == 2){
-                AttackTest.AttackTest(attackerPotential, DEFPotential, actionType);
-                AttackTest.AttackTest(attackerPotential, DEFPotential, actionType);
+            if (actionType == 1){               // Zwykły cios
+                AttackTest.attack(attackerPotential, DEFPotential, actionType);
+            } else if (actionType == 2){        // Szybki cios
+                AttackTest.attack(attackerPotential, DEFPotential, actionType);
+                System.out.println("Potencjał Obrońcy: ");
+                DEFPotential = scan.nextInt();  // Silny cios
+                AttackTest.attack(attackerPotential, DEFPotential, actionType);
             } else if (actionType == 3){
-                AttackTest.AttackTest(attackerPotential - 3,DEFPotential, actionType);
+                AttackTest.attack(attackerPotential - 3,DEFPotential, actionType);
             }
-        } while (0 < 1);
+        } while (true);
 
 
     }
