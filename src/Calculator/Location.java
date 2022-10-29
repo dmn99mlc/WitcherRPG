@@ -63,6 +63,9 @@ public class Location {
         else if (measuredLocation == 6){
             locationName = "Lewa Noga";
         }
+        else if (measuredLocation == 7) {
+            locationName = "Specjalne";
+        }
 
         return locationName;
     }

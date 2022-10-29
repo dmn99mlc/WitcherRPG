@@ -19,7 +19,6 @@ class AttackTest {
   System.out.println("Rzut Agresora: ");
   int attackerRoll = scan.nextInt();
 
-  System.out.println("Czy mierzony?\n1 - Tak\n0 - Nie");
   if (measured == 0){
    locationName = Location.rolledlocationName(attackerRoll);
    locMultiplier = Location.LocMultiplier(locationName);
