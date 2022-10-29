@@ -5,13 +5,15 @@ import java.util.Scanner;
 public class Fumble {
 
     //Pech Atakującego
-    public static void ATTFumble(int ATTFumbleThrow, int actionType, String locationName) {
+    public static void ATTFumble(int ATTFumbleThrow) {
         Scanner scan = new Scanner(System.in);
 
         System.out.println("Pech!\n Wskaż typ ataku: \n 1 - Atak wręcz \n 2 - Atak dystansowy");
         int attackType = scan.nextInt();
 
         //Atak wręcz
+        int actionType;
+        String locationName;
         if (attackType == 1) {
 
             if (ATTFumbleThrow <= 5)
@@ -26,14 +28,20 @@ public class Fumble {
                 System.out.println("Broń zostaje poważnie uszkodzona. Traci " + LossDurability + " Trwałości.");
             }
             else if (ATTFumbleThrow == 9) {
-                System.out.println("Postać trafia samą siebie. Rzuć na lokację i obrażenia.");
-                System.out.println("Mnożnik obrażeń z lokacji:\n 3 - Głowa\n 1 - Korpus\n 0,5 - Pozostałe");
-                DamageTest.damage(0,scan.nextDouble(),actionType,locationName);
+                System.out.println("Postać trafia samą siebie. Rzuć na lokację.");
+                int attackerroll = scan.nextInt();
+                locationName = Location.rolledlocationName(attackerroll);
+                double locMultiplier = Location.LocMultiplier(locationName);
+                actionType = 1;
+                DamageTest.damage(0,locMultiplier, actionType, locationName);
             }
             else {
-                System.out.println("Postać trafia losowego sojusznika, jeżeli taki jest w zasięgu");
-                System.out.println("Mnożnik obrażeń z lokacji:\n 3 - Głowa\n 1 - Korpus\n 0,5 - Pozostałe");
-                DamageTest.damage(0,scan.nextDouble(),actionType,locationName);
+                System.out.println("Postać trafia losowego sojusznika, jeżeli taki jest w zasięgu. Rzuć na lokalizację.");
+                int attackerroll = scan.nextInt();
+                locationName = Location.rolledlocationName(attackerroll);
+                double locMultiplier = Location.LocMultiplier(locationName);
+                actionType = 1;
+                DamageTest.damage(0,locMultiplier, actionType, locationName);
             }
 
         }
@@ -49,16 +57,19 @@ public class Fumble {
                 System.out.println("Pęka cięciwa, zacina się kusza, broń rzucana wypada na ziemię. Potrzeba 1 Akcji, by to naprawić.");
             }
             else {
-                System.out.println("Pocisk rykoszetuje i trafia losowego sojusznika w zasięgu. Rzuć na lokację i obrażenia");
-                System.out.println("Mnożnik obrażeń z lokacji:\n 3 - Głowa\n 1 - Korpus\n 0,5 - Pozostałe");
-                DamageTest.damage(0,scan.nextDouble(),actionType,locationName);
+                System.out.println("Pocisk rykoszetuje i trafia losowego sojusznika w zasięgu. Rzuć na lokację.");
+                int attackerroll = scan.nextInt();
+                locationName = Location.rolledlocationName(attackerroll);
+                double locMultiplier = Location.LocMultiplier(locationName);
+                actionType = 1;
+                DamageTest.damage(0,locMultiplier, actionType, locationName);
             }
 
         }
     }
 
     //Pech Obrońcy
-    public static void DEFFumble(int DEFFumbleThrow, int actionType, String locationName) {
+    public static void DEFFumble(int DEFFumbleThrow) {
         Scanner scan = new Scanner(System.in);
         System.out.println("Pech!\n Wskaż typ obrony: \n 1 - Obrona bronią \n 2 - Obrona ruchem");
         int defensetype = scan.nextInt();
@@ -85,8 +96,12 @@ public class Fumble {
                 System.out.println("Broń traci dodatkowe 2k6 Trwałości");
             }
             else {
-                System.out.println("Postać dostaje własnym żelazem, gdy cios przeciwnika odbija broń. Rzuć na lokację i obrażenia");
-                DamageTest.damage(0,scan.nextDouble(),actionType,locationName);
+                System.out.println("Postać dostaje własnym żelazem, gdy cios przeciwnika odbija broń. Rzuć na lokację");
+                int attackerroll = scan.nextInt();
+                String locationName = Location.rolledlocationName(attackerroll);
+                double locMultiplier = Location.LocMultiplier(locationName);
+                int actionType = 1;
+                DamageTest.damage(0,locMultiplier, actionType, locationName);
             }
 
 
