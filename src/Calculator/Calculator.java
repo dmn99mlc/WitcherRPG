@@ -25,7 +25,7 @@ public class Calculator {
             } else if (actionType == 3){        // Silny cios
                 meleeAttack.attack(attackerPotential, actionType);
             } else if (actionType == 4){        // Atak dystansowy
-                rangedAttack.attack(attackerPotential);
+                rangedAttack.attack(attackerPotential, actionType);
             }
         } while (true);
 

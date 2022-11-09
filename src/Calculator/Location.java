@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class Location {
 
     public static String rolledlocationName(int attackerRoll) {
-        String locationName = "";
+        String locationName;
 
         if (attackerRoll %10 == 1){
             locationName = "Głowa";
@@ -23,6 +23,8 @@ public class Location {
         }
         else if (attackerRoll %10 >= 9){
             locationName = "Lewa Noga";
+        } else {
+            locationName = "Specjalne";
         }
 
         return locationName;
